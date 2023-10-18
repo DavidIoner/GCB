@@ -10,6 +10,7 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Map" component={MapScreen} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

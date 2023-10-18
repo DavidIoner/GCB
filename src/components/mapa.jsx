@@ -14,23 +14,15 @@ const MapScreen = () => {
   };
 
   useEffect(() => {
-    // Supondo que você tem um JSON com dados de localização
+    // const {latitude, longitude, horario} = geoData()
     const jsonData = [
       {
         id: 1,
-        latitude: -25.095,
+        latitude: -25.097,
         longitude: -50.160,
         title: 'Localização 1',
         description: 'Descrição do local 1',
-      },
-      {
-        id: 2,
-        latitude: -25.090,
-        longitude: -50.170,
-        title: 'Localização 2',
-        description: 'Descrição do local 2',
-      },
-      // Adicione mais coordenadas conforme necessário
+      }
     ];
 
     setMarkers(jsonData);
@@ -54,6 +46,7 @@ const MapScreen = () => {
           />
         ))}
       </MapView>
+
     </View>
   );
 };
