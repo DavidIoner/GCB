@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
+import useLocationData from '../hooks/geoData';
 
 const MapScreen = () => {
   const [markers, setMarkers] = useState([]);
+  const { latitude, longitude } = useLocationData();
 
   // Coordenadas centralizadas em Ponta Grossa, PR, Brasil
   const initialRegion = {
@@ -14,19 +16,22 @@ const MapScreen = () => {
   };
 
   useEffect(() => {
-    // const {latitude, longitude, horario} = geoData()
+    // Verifique se a latitude e a longitude são nulas e atribua valores padrão se forem
+    const defaultLatitude = latitude || initialRegion.latitude;
+    const defaultLongitude = longitude || initialRegion.longitude;
+
     const jsonData = [
       {
         id: 1,
-        latitude: -25.097,
-        longitude: -50.160,
+        latitude: defaultLatitude,
+        longitude: defaultLongitude,
         title: 'Localização 1',
         description: 'Descrição do local 1',
       }
     ];
 
     setMarkers(jsonData);
-  }, []);
+  }, [latitude, longitude]); // Certifique-se de observar as alterações em latitude e longitude
 
   return (
     <View style={styles.container}>
@@ -46,7 +51,6 @@ const MapScreen = () => {
           />
         ))}
       </MapView>
-
     </View>
   );
 };
